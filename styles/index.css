@@ -1,0 +1,77 @@
+body{
+    overflow-x: hidden;
+}
+
+#menu{
+    background: var(--primary-color);
+    color: white;
+    text-align: center;
+    padding-top: 1rem;
+    width: var(--menu-width);
+    height: 100%;
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+#menu .title{
+    font-size: .8rem;
+    margin-bottom: 1rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid white;
+    font-weight: bold;
+    margin-top: 0.5rem;
+}
+
+#menu .app-infos{
+    font-size: 11px;
+    color: rgb(200, 200, 200);
+}
+
+#menu .nav{
+    border: none;
+    margin-bottom: none;
+}
+
+#menu .nav-link{
+    font-weight: bold;
+    width: 100%;
+    text-align: left;
+    border-radius: 30px 0 0 30px;
+    border: none;
+    padding-top: .7rem;
+    padding-bottom: .7rem;
+    transition: all .3s ease;
+}
+#menu .nav-link:not(.active){
+    color: rgb(230, 230, 230)!important;
+}
+#menu .nav-link:not(.active):hover{
+    background: rgb(0, 51, 130);
+}
+
+main{
+    margin-left: var(--menu-width);
+}
+
+.tab-pane{
+    padding: 2rem;
+}
+
+.readonly{
+    background-color: rgb(240, 240, 240)!important;
+}
+
+footer{
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    padding: 5px;
+    font-size: 12px;
+    display: flex;
+    justify-content: space-between;
+    border-top: 1px solid lightgray;
+    color: gray;
+    background: white;
+}

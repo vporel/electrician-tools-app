@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>EBE Tools</title>
+    <link rel="stylesheet" href="../styles/variables.css" /> 
+    <!-- Libraries styles -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" integrity="sha384-tViUnnbYAV00FLIhhi3v/dWt3Jxw4gZQcNoSCxCIFNJVCx7/D55/wXsrNIRANwdD" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+    <!-- END : Librairiesstyles -->
+    <link rel="stylesheet" href="../styles/index.css" /> 
+  </head>
+  <body>
+    <div id="menu">
+        <div>
+            <img src="../assets/images/icon-white.png" height="50" alt="" />
+            <h2 class="title">Outils Bureau <br /> d'Etudes Electrique</h2>
+            <ul class="nav nav-tabs flex-column" id="navbar">
+                <li class="nav-item">
+                    <button class="nav-link d-flex gap-2 active" data-bs-target="#accueil"><i class="bi bi-house-door"></i> Accueil</a>
+                </li>
+                <li class="nav-item">
+                    <button class="nav-link d-flex gap-2" data-bs-target="#calculs"><i class="bi bi-calculator"></i> Calculs</a>
+                </li>
+                <li class="nav-item">
+                    <button class="nav-link d-flex gap-2" data-bs-target="#generateur-doe"><i class="bi bi-magic"></i> Générateur de DOE</a>
+                </li>
+                <li class="nav-item">
+                    <button class="nav-link d-flex gap-2" data-bs-target="#simplificateur-nomenclature"><i class="bi bi-magic"></i> Simplificateur de nomenclature</a>
+                </li>
+                <li class="nav-item">
+                    <button class="nav-link d-flex gap-2" data-bs-target="#autres"><bi class="bi-grid"></bi> Autres</a>
+                </li>
+            </ul>
+        </div>
+        <div class="app-infos p-1">  
+            <div class="version">V1.0.0</div>   
+            <div class="author">Vivian NKOUANANG</div>   
+            <div class="author-email">dev.vporel@gmail.com</div> 
+        </div>
+    </div>
+   <main>
+        <section class="tab-content">
+            <div id="accueil" class="tab-pane fade active show">
+                <div class="d-flex flex-column justify-content-center align-items-center gap-4" style="min-height:90vh">
+                    <img src="../assets/images/icon.png" alt=""/>
+                    <h1 class="text-center" style="font-size: 4rem">Outils Bureau <br /> d'Etudes Electrique</h1>
+                    <p class="fs-3 text-center" style="background: var(--primary-color); color: white; padding: 2rem; border-radius: 20px;">
+                        Un ensemble d'outils destinés à <br /> faciliter l'exécution de certaines tâches
+                    </p>
+                </div>
+            </div>
+            <div id="calculs" class="tab-pane fade">
+                <h4 class="my-2">Puissance > Courant</h4>
+                <div class="row mt-3">
+                    <div class="col-6">
+                        <div class="border rounded p-2">
+                            <h6 class="mb-3">Monophasé (V = 230V)</h4>
+                            <div class="row">
+                                <div class="col">
+                                    <label for="calculs-P-I-monophase-puissance" class="form-label">Puissance</label>
+                                    <div class="d-flex align-items-center gap-2">
+                                        <input type="number" class="form-control" id="calculs-P-I-monophase-puissance" />
+                                        <span>kW</span>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <label for="calculs-P-I-monophase-cosphi" class="form-label">cos(&phi;)</label>
+                                    <input type="number" value="1" class="form-control" id="calculs-P-I-monophase-cosphi" />
+                                </div>
+                                <div class="col">
+                                    <label for="calculs-P-I-monophase-courant" class="form-label">Courant</label> 
+                                    <div class="d-flex align-items-center gap-2">
+                                        <input type="number" type="email" class="form-control readonly" id="calculs-P-I-monophase-courant" readonly/>
+                                        <span>A</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="border rounded p-2">
+                            <h6 class="mb-3">Triphasé (U = 400V)</h4>
+                                <div class="row">
+                                    <div class="col">
+                                        <label for="calculs-P-I-triphase-puissance" class="form-label">Puissance</label>
+                                        <div class="d-flex align-items-center gap-2">
+                                            <input type="number" class="form-control" id="calculs-P-I-triphase-puissance" />
+                                            <span>kW</span>
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <label for="calculs-P-I-triphase-cosphi" class="form-label">cos(&phi;)</label>
+                                        <input type="number" value="1" class="form-control" id="calculs-P-I-triphase-cosphi" />
+                                    </div>
+                                    <div class="col">
+                                        <label for="calculs-P-I-triphase-courant" class="form-label">Courant</label>
+                                        <div class="d-flex align-items-center gap-2">
+                                            <input type="number" type="email" class="form-control readonly" id="calculs-P-I-triphase-courant" readonly/>
+                                            <span>A</span>
+                                        </div>
+                                    </div>
+                                </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+                
+            <div id="generateur-doe" class="tab-pane fade">
+                <p style="font-size: 15px" class="text-center">
+                    Générer le DOE dans un dossier à partir d'une base de fichiers et d'une nomenclature <br />
+                    Les références  non trouvés sont ensuite affichées pour ne télécharger que celles-ci
+                </p>
+                <div class="d-flex gap-2 align-items-center">
+                    <label style="width: 365px">Dossier base de données</label>
+                    <input readonly class="form-control readonly" id="generateur-doe-dossier-bd" />
+                    <button type="button" class="btn btn-secondary" id="generateur-doe-dossier-bd-btn"><i class="bi bi-pen"></i></button>
+                </div>
+                <div class="d-flex justify-content-end align-items-center gap-2 mt-2">
+                    <i class="bi bi-arrow-90deg-up"></i>
+                    <input class="form-check-input" type="checkbox" value="" id="generateur-doe-enregistrer-dossier-db">
+                    <label class="form-check-label" for="generateur-doe-enregistrer-dossier-db">
+                        Se souvenir de ce dossier
+                    </label>
+                </div>
+                <div class="d-flex gap-2 align-items-center mt-2">
+                    <label style="width: 365px">Dossier de sortie</label>
+                    <input value="" readonly class="form-control readonly" id="generateur-doe-dossier-sortie" />
+                    <button type="button" class="btn btn-secondary" id="generateur-doe-dossier-sortie-btn"><i class="bi bi-pen"></i></button>
+                </div>
+                <div class="d-flex gap-2 align-items-center mt-2">
+                    <label style="width: 365px">Fichier nomenclature (Excel)</label>
+                    <input value="" readonly class="form-control readonly" id="generateur-doe-fichier-nomenclature" />
+                    <button type="button" class="btn btn-secondary" id="generateur-doe-fichier-nomenclature-btn"><i class="bi bi-pen"></i></button>
+                </div>
+                <div class="d-flex gap-2 align-items-center mt-2">
+                    <label style="width: 350px">Colonne des références</label>
+                    <select class="form-select" value="E" id="generateur-doe-colonne-references" >
+                        <option value="A">A</option>
+                        <option value="B">B</option>
+                        <option value="C">C</option>
+                        <option value="D">D</option>
+                        <option value="E" selected>E</option>
+                        <option value="F">F</option>
+                        <option value="G">G</option>
+                    </select>
+                </div>
+                <div class="d-flex align-items-center justify-content-end gap-2 mt-2">
+                    <span id="generateur-doe-progression"></span>
+                    <button type="button" class="btn btn-primary d-flex align-items-center gap-2 px-4 py-2" id="generateur-doe-colonne-generer-btn">
+                        <i class="bi bi-magic icon"></i> 
+                        <span class="spinner spinner-border d-none" style="width: 20px; height: 20px"></span>
+                        Générer
+                    </button>
+                </div>
+                <div id="generateur-doe-resultat" class="d-none">
+                    <div class="mb-2 fw-bold">Références à télécharger (<span class="text-primary" id="generateur-doe-nb-refs-non-trouvees">0</span>)</div>
+                    <textarea class="form-control readonly" style="width: 100%; height: 150px;" id="generateur-doe-resultat-textarea"></textarea>
+                </div>
+            </div>
+
+            <div id="simplificateur-nomenclature" class="tab-pane fade">
+                <p style="font-size: 15px" class="text-center">
+                    Simplifier une nomenclature en supprimant les doublons dans les références <br />
+                    Les références sont triées par ordre alphabétique <br />
+                    Pour chaque référence, la quantité et les symboles associés seront affichés
+                </p>
+                <div class="d-flex gap-2 align-items-center">
+                    <label style="width: 365px">Fichier nomenclature (Excel)</label>
+                    <input value="" readonly class="form-control readonly" id="simplificateur-nomenclature-fichier-entree" />
+                    <button type="button" class="btn btn-secondary" id="simplificateur-nomenclature-fichier-entree-btn"><i class="bi bi-pen"></i></button>
+                </div>
+                <div class="d-flex gap-2 align-items-center mt-2">
+                    <label style="width: 365px">Fichier de sortie (Excel)</label>
+                    <input value="" readonly class="form-control readonly" id="simplificateur-nomenclature-fichier-sortie" />
+                    <button type="button" class="btn btn-secondary" id="simplificateur-nomenclature-fichier-sortie-btn"><i class="bi bi-pen"></i></button>
+                </div>
+                <div class="d-flex gap-2 align-items-center mt-2">
+                    <label style="width: 350px">Colonne Etiquette</label>
+                    <select class="form-select" value="B" id="simplificateur-nomenclature-colonne-etiquette" >
+                        <option value="A">A</option>
+                        <option value="B" selected>B</option>
+                        <option value="C">C</option>
+                        <option value="D">D</option>
+                        <option value="E">E</option>
+                        <option value="F">F</option>
+                        <option value="G">G</option>
+                    </select>
+                </div>
+                <div class="d-flex gap-2 align-items-center mt-2">
+                    <label style="width: 350px">Colonne Description</label>
+                    <select class="form-select" value="D" id="simplificateur-nomenclature-colonne-description" >
+                        <option value="A">A</option>
+                        <option value="B">B</option>
+                        <option value="C">C</option>
+                        <option value="D" selected>D</option>
+                        <option value="E">E</option>
+                        <option value="F">F</option>
+                        <option value="G">G</option>
+                    </select>
+                </div>
+                <div class="d-flex gap-2 align-items-center mt-2">
+                    <label style="width: 350px">Colonne ID Catalogue</label>
+                    <select class="form-select" value="E" id="simplificateur-nomenclature-colonne-id" >
+                        <option value="A">A</option>
+                        <option value="B">B</option>
+                        <option value="C">C</option>
+                        <option value="D">D</option>
+                        <option value="E" selected>E</option>
+                        <option value="F">F</option>
+                        <option value="G">G</option>
+                    </select>
+                </div>
+                <div class="d-flex gap-2 align-items-center mt-2">
+                    <label style="width: 350px">Colonne Fabricant</label>
+                    <select class="form-select" value="F" id="simplificateur-nomenclature-colonne-fabricant" >
+                        <option value="A">A</option>
+                        <option value="B">B</option>
+                        <option value="C">C</option>
+                        <option value="D">D</option>
+                        <option value="E">E</option>
+                        <option value="F" selected>F</option>
+                        <option value="G">G</option>
+                    </select>
+                </div>
+                <div class="d-flex gap-2 align-items-center mt-2">
+                    <label style="width: 350px">Colonne Quantité</label>
+                    <select class="form-select" value="G" id="simplificateur-nomenclature-colonne-quantite" >
+                        <option value="A">A</option>
+                        <option value="B">B</option>
+                        <option value="C">C</option>
+                        <option value="D">D</option>
+                        <option value="E">E</option>
+                        <option value="F">F</option>
+                        <option value="G" selected>G</option>
+                    </select>
+                </div>
+                <div class="d-flex gap-2 align-items-center mt-2">
+                    <label style="width: 350px">Trier par</label>
+                    <select class="form-select" value="id" id="simplificateur-nomenclature-propriete-tri" >
+                        <option value="id" selected>ID Catalogue</option>
+                        <option value="fabricant">Fabricant</option>
+                    </select>
+                </div>
+                <p style="font-size: 15px" class="text-center mt-3">
+                    Les lettres des colonnes sont à modifier si elles ne correspondent pas à la structure du fichier nomenclature
+                </p>
+                <div class="d-flex align-items-center justify-content-end mt-2">
+                    <button type="button" class="btn btn-primary d-flex align-items-center gap-2 px-4 py-2" id="simplificateur-nomenclature-executer-btn">
+                        <i class="bi bi-magic icon"></i> 
+                        <span class="spinner spinner-border d-none" style="width: 20px; height: 20px"></span>
+                        Exécuter
+                    </button>
+                </div>
+            </div>
+
+            <div id="autres" class="tab-pane fade">
+                <h4 class="mt-2 mb-3">Télécharger une datasheet</h4>
+                <div class="accordion">
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#telecharger-datasheet-harting" aria-expanded="false" aria-controls="collapseTwo">
+                                Harting
+                            </button>
+                        </h2>
+                        <div id="telecharger-datasheet-harting" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                            <div class="accordion-body">
+                                <p style="font-size: 12px">
+                                    La fichier est mis dans le dossier 'Téléchargements'
+                                </p>
+                                <div class="d-flex align-items-center gap-2">
+                                    <input type="number" value="" class="form-control" id="telecharger-datasheet-harting-ref" placeholder="Référence"/>
+                                    <select class="form-select" value="FR" style="width: 100px" id="telecharger-datasheet-harting-lang" >
+                                        <option value="FR">FR</option>
+                                        <option value="EN">EN</option>
+                                    </select>
+                                    <button type="button" class="btn btn-primary d-flex align-items-center gap-2 p-2" id="telecharger-datasheet-harting-btn">
+                                        <i class="bi bi-download icon"></i> 
+                                        <span class="spinner spinner-border d-none" style="width: 20px; height: 20px"></span>
+                                        Télécharger
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#telecharger-datasheet-siemens" aria-expanded="false" aria-controls="collapseTwo">
+                                Siemens
+                            </button>
+                        </h2>
+                        <div id="telecharger-datasheet-siemens" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                            <div class="accordion-body">
+                                <p style="font-size: 12px">
+                                    La fichier est mis dans le dossier 'Téléchargements'
+                                </p>
+                                <div class="d-flex align-items-center gap-2">
+                                    <input value="" class="form-control" id="telecharger-datasheet-siemens-ref" placeholder="Référence"/>
+                                    <select class="form-select" value="FR" style="width: 100px" id="telecharger-datasheet-siemens-lang" >
+                                        <option value="FR">FR</option>
+                                        <option value="EN">EN</option>
+                                    </select>
+                                    <button type="button" class="btn btn-primary d-flex align-items-center gap-2 p-2" id="telecharger-datasheet-siemens-btn">
+                                        <i class="bi bi-download icon"></i> 
+                                        <span class="spinner spinner-border d-none" style="width: 20px; height: 20px"></span>
+                                        Télécharger
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#telecharger-datasheet-teknomega" aria-expanded="false" aria-controls="collapseTwo">
+                                Teknomega
+                            </button>
+                        </h2>
+                        <div id="telecharger-datasheet-teknomega" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                            <div class="accordion-body">
+                                <p style="font-size: 12px">
+                                    La fichier est mis dans le dossier 'Téléchargements'
+                                </p>
+                                <div class="d-flex align-items-center gap-2">
+                                    <input value="" class="form-control" id="telecharger-datasheet-teknomega-ref" placeholder="Référence"/>
+                                    <select class="form-select" value="EN" style="width: 100px" id="telecharger-datasheet-teknomega-lang" >
+                                        <option value="EN">EN</option>
+                                    </select>
+                                    <button type="button" class="btn btn-primary d-flex align-items-center gap-2 p-2" id="telecharger-datasheet-teknomega-btn">
+                                        <i class="bi bi-download icon"></i> 
+                                        <span class="spinner spinner-border d-none" style="width: 20px; height: 20px"></span>
+                                        Télécharger
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+   </main>
+    <!-- Librairies scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+    <!-- END : Librairies scripts -->
+    <script src="../scripts/utils.js"></script>
+    <script src="../scripts/settings-utils.js"></script>
+    <script src="../scripts/electron-utils.js"></script>
+    <script src="../scripts/system-utils.js"></script>
+    <script src="../scripts/misc-utils.js"></script>
+    <script src="../scripts/toastify-utils.js"></script>
+    <script src="../scripts/index.js"></script>
+    <script src="../scripts/_calculs.js"></script>
+    <script src="../scripts/_generateur-doe.js"></script>
+    <script src="../scripts/_simplificateur-nomenclature.js"></script>
+    <script src="../scripts/_telecharger-datasheet-harting.js"></script>
+    <script src="../scripts/_telecharger-datasheet-siemens.js"></script>
+    <script src="../scripts/_telecharger-datasheet-teknomega.js"></script>
+  </body>
+</html>
