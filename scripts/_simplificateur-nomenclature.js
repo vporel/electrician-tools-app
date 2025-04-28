@@ -1,13 +1,15 @@
-/*
-    Télécharger la doc technique d'une référence harting
-    Le fichier téléchargé est mis dans le dossier Téléchargements
-    Après analyse des urls de téléchargements sur le site harting, je me suis rendu compte que le pattern est toujours le même
-    La seule chaine qui change est la référence. 
-    Il est donc possible de télécharger une doc à partir de ce script sans aller sur le site
-*/
+const simplificateurNomenclatureFichiersEntree = []
+const simplificateurNomenclatureContenuDivFichiersEntree = []
+
+function simplificateurNomenclatureSupprimerFichierEntree(path){
+    const index = simplificateurNomenclatureFichiersEntree.indexOf(path)
+    simplificateurNomenclatureFichiersEntree.splice(index, 1)
+    simplificateurNomenclatureContenuDivFichiersEntree.splice(index, 1)
+    $('#simplificateur-nomenclature-fichiers-entree-list').html(simplificateurNomenclatureContenuDivFichiersEntree.length > 0 ? simplificateurNomenclatureContenuDivFichiersEntree.join("") : "Ajoutez un/plusieurs fichier(s)")
+}
 function simplificateurNomenclature(){
-    const $inputFichierEntree = $('#simplificateur-nomenclature-fichier-entree')
     const $btnFichierEntree = $('#simplificateur-nomenclature-fichier-entree-btn')
+    const $divFichiersEntree = $('#simplificateur-nomenclature-fichiers-entree-list')
     const $inputFichierSortie = $('#simplificateur-nomenclature-fichier-sortie')
     const $btnFichierSortie = $('#simplificateur-nomenclature-fichier-sortie-btn')
     const $selectColonneEtiquette = $('#simplificateur-nomenclature-colonne-etiquette')
@@ -19,18 +21,32 @@ function simplificateurNomenclature(){
     const $btnExecuter = $('#simplificateur-nomenclature-executer-btn')
 
     $btnFichierEntree.on('click', async function(){
-        const path = await ElectronUtils.openFile({filters: [{name: "Fichiers Excel", extensions: ["xlsx", "xls"]}]})
-        if(path) $inputFichierEntree.val(path)
+        const paths = await ElectronUtils.openFiles({filters: [{name: "Fichiers Excel", extensions: ["xlsx", "xls"]}]})
+        if(paths){
+            paths.forEach(path => {
+                if(!simplificateurNomenclatureFichiersEntree.includes(path)){
+                    simplificateurNomenclatureFichiersEntree.push(path)
+                    const codeElement = `
+                        <div class="d-flex gap-2 align-items-center my-1">
+                            ${path}
+                            <button type="button" class="btn btn-secondary py-0 px-1" onclick="simplificateurNomenclatureSupprimerFichierEntree('${path}')"><i class="bi bi-x"></i></button>
+                        </div>
+                    `
+                    simplificateurNomenclatureContenuDivFichiersEntree.push(codeElement)
+                    $divFichiersEntree.html(simplificateurNomenclatureContenuDivFichiersEntree.join(""))
+                }
+            })
+        }
     })  
 
     $btnFichierSortie.on('click', async function(){
-        const path = await ElectronUtils.saveFile({filters: [{name: "Fichiers Excel", extensions: ["xlsx"]}]})
+        let path = await ElectronUtils.saveFile({filters: [{name: "Fichiers Excel", extensions: ["xlsx"]}]})
+        if(!path.toLowerCase().endsWith('.xlsx')) path = path+".xlsx"
         if(path) $inputFichierSortie.val(path)
     })  
 
     $btnExecuter.on('click', async function(){
         startBtnLoading($btnExecuter)
-        const fichierEntree = $inputFichierEntree.val()
         const fichierSortie = $inputFichierSortie.val()
         const mappingLettresColonnes = {A: 0, B: 1, C: 2, D: 3, E: 4, F: 5, G: 6}
         const colonneEtiquetteIndice = mappingLettresColonnes[$selectColonneEtiquette.val()]
@@ -39,17 +55,25 @@ function simplificateurNomenclature(){
         const colonneFabricantIndice = mappingLettresColonnes[$selectColonneFabricant.val()]
         const colonneQuantiteIndice = mappingLettresColonnes[$selectColonneQuantite.val()]
         const proprieteTri = $selectProprieteTri.val()
-        if(fichierEntree == "" || fichierSortie == ""){
+        if(simplificateurNomenclatureFichiersEntree.length == 0 || fichierSortie == ""){
             ToastifyUtils.error("Complétez tous les champs")
         }else{
             if(Array.from(new Set([colonneEtiquetteIndice, colonneDescriptionIndice, colonneIdIndice, colonneFabricantIndice, colonneQuantiteIndice])).length < 5){
                 ToastifyUtils.error("Deux colonnes ont la même lettre")
             }else{
-                contenuFichierEntree = await MiscUtils.readExcelFile(fichierEntree)
-                if(!contenuFichierEntree || contenuFichierEntree.length == 0)
-                    ToastifyUtils.error("Le fichier nomenclature est vide")
-                else{
-                    const donneesEntree = contenuFichierEntree[0].data.slice(1) //Première feuille, supprimer la première ligne qui est l'entête
+                let unFichierVide = false
+                let donneesEntree = []
+                for(const fichierEntree of simplificateurNomenclatureFichiersEntree){
+                    const contenuFichierEntree = await MiscUtils.readExcelFile(fichierEntree)
+                    if(!contenuFichierEntree || contenuFichierEntree.length == 0){
+                        ToastifyUtils.error("Le fichier nomenclature est vide")
+                        unFichierVide = true
+                        break
+                    }else{
+                        donneesEntree = [...donneesEntree, ...(contenuFichierEntree[0].data.slice(1))] //Première feuille, suppression de la première ligne qui est l'entête
+                    }
+                }
+                if(!unFichierVide){
                     /**
                      * @var Array<{
                      *  id: string
@@ -72,11 +96,11 @@ function simplificateurNomenclature(){
                         const referenceExistante = references.find(r => r.id == id)
                         if(referenceExistante){
                             referenceExistante.quantite = referenceExistante.quantite + quantite
-                            referenceExistante.symboles.push(etiquette)
+                            referenceExistante.symboles.push(`${etiquette} (${quantite})`)
                         }else{
                             const ref = {
                                 id, description, fabricant, quantite,
-                                symboles: [etiquette]
+                                symboles: [`${etiquette} (${quantite})`]
                             }
                             references.push(ref)
                         }

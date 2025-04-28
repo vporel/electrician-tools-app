@@ -42,7 +42,7 @@ const createWindow = () => {
 
     window.loadFile(`./views/index.html`);
     window.maximize()
-    // window.webContents.openDevTools() 
+    window.webContents.openDevTools() 
 }
 
 app.whenReady().then(() => {

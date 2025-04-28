@@ -3,7 +3,7 @@ const { FusesPlugin } = require('@electron-forge/plugin-fuses');
 const { FuseV1Options, FuseVersion } = require('@electron/fuses');
 
 module.exports = {
-  outDir: './out/v1.0.0',
+  outDir: './out/v1.1.0',
   packagerConfig: {
     name: "EBE Tools",
     asar: true,

@@ -35,7 +35,7 @@
             </ul>
         </div>
         <div class="app-infos p-1">  
-            <div class="version">V1.0.0</div>   
+            <div class="version">V1.1.0</div>   
             <div class="author">Vivian NKOUANANG</div>   
             <div class="author-email">dev.vporel@gmail.com</div> 
         </div>
@@ -162,14 +162,18 @@
 
             <div id="simplificateur-nomenclature" class="tab-pane fade">
                 <p style="font-size: 15px" class="text-center">
-                    Simplifier une nomenclature en supprimant les doublons dans les références <br />
+                    Simplifier une ou  plusieurs nomenclature en supprimant les doublons dans les références <br />
                     Les références sont triées par ordre alphabétique <br />
                     Pour chaque référence, la quantité et les symboles associés seront affichés
                 </p>
-                <div class="d-flex gap-2 align-items-center">
-                    <label style="width: 365px">Fichier nomenclature (Excel)</label>
-                    <input value="" readonly class="form-control readonly" id="simplificateur-nomenclature-fichier-entree" />
-                    <button type="button" class="btn btn-secondary" id="simplificateur-nomenclature-fichier-entree-btn"><i class="bi bi-pen"></i></button>
+                <div class="">
+                    <div class="d-flex gap-2 align-items-center">
+                        <label style="width: 285px">Fichier(s) de nomenclature(s) (Excel)</label>
+                        <button type="button" class="btn btn-primary d-flex align-items-center gap-2 px-4 py-2" id="simplificateur-nomenclature-fichier-entree-btn"><i class="bi bi-plus"></i> Ajouter</button>
+                    </div>
+                    <div class="border mt-2 rounded p-2" id="simplificateur-nomenclature-fichiers-entree-list">
+                        Ajoutez un/plusieurs fichier(s)
+                    </div>
                 </div>
                 <div class="d-flex gap-2 align-items-center mt-2">
                     <label style="width: 365px">Fichier de sortie (Excel)</label>

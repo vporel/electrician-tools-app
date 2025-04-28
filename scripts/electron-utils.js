@@ -9,21 +9,19 @@ const ElectronUtils = {
         if(result.canceled || result.filePaths.length == 0) return null
         return result.filePaths[0]
     },
+
     /**
      * 
      * @param {*} options {
      * 
-     *  multiple: boolean = false
-     * 
      *  filters: Array<{name: string, extensions: string[]}> //extensions without dots (txt, jpg, ...)
      * 
      * }
-     * @returns 
+     * @returns {string|null}
      */
     openFile: async (options = {}) => {
         const _options = {
             ...({
-                multiple: false, 
                 filters: [
                     {name: "Tous les fichiers", extensions: ['*']}
                 ]
@@ -31,10 +29,37 @@ const ElectronUtils = {
             ...options
         }
         const properties = ['openFile']
-        if(_options.multiple) properties.push('multiSelection')
         const result = await electron.showOpenDialog({ properties, filters: _options.filters})
         if(result.canceled || result.filePaths.length == 0) return null
         return result.filePaths[0]
+    },
+
+    /**
+     * 
+     * @param {*} options {
+     * 
+     *  multiple: boolean = true
+     * 
+     *  filters: Array<{name: string, extensions: string[]}> //extensions without dots (txt, jpg, ...)
+     * 
+     * }
+     * @returns {string[]|null}
+     */
+    openFiles: async (options = {}) => {
+        const _options = {
+            ...({
+                multiple: true, 
+                filters: [
+                    {name: "Tous les fichiers", extensions: ['*']}
+                ]
+            }),
+            ...options
+        }
+        const properties = ['openFile']
+        if(_options.multiple) properties.push('multiSelections')
+        const result = await electron.showOpenDialog({ properties, filters: _options.filters})
+        if(result.canceled) return null
+        return result.filePaths
     },
 
     /**
