@@ -32,19 +32,63 @@ const MiscUtils = {
     *      openOnFinish: boolean
     *  }
     * } options
-     * @returns Promise<boolean>
+     * @returns {Promise<boolean>}
      */
     writeExcelFile: misc.writeExcelFile,
+
+    /**
+     * @param {any} data
+     * @returns {Promise<any>}
+     */
+    buildXML: misc.buildXML,
+
+    /**
+     * @param {string} filePath 
+     * @param {any} options 
+     * @returns {Promise<any>}
+     */
+    readFile: misc.readFile,
+    
+    /**
+     * @param {string} filePath 
+     * @param {any} data
+     * @param {
+     *  {
+     *      openOnFinish: boolean
+     *  }
+     * } options
+     * @returns {Promise<boolean>}
+     */
+    writeFile: misc.writeFile,
     
     /**
      * @param {string} url 
      * @param {string} destFileName 
      * @param {
      *  {
-    *      contentType
-    *  }
-    * } options
-     * @returns Promise<boolean>
+     *      contentType
+     *  }
+     * } options
+     * @returns {Promise<string|false>} file path
      */
-    downloadFile: misc.downloadFile
+    downloadFile: misc.downloadFile,
+
+    /**
+     * @param {string} filePath 
+     * @returns {void}
+     */
+    startFile: misc.startFile,
+
+    /**
+     * @param {string} filePath 
+     * @returns {void}
+     */
+    openDirAndSelectFile: misc.openDirAndSelectFile,
+
+    /**
+     * @param {string} filePath 
+     * @param {any} options 
+     * @returns {Promise<any>}
+     */
+    getTextsFromPdf: misc.getTextsFromPdf,
 }

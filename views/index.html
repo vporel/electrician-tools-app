@@ -5,10 +5,11 @@
     <title>EBE Tools</title>
     <link rel="stylesheet" href="../styles/variables.css" /> 
     <!-- Libraries styles -->
+    <!-- TODO : Télécharger les fichiers bootstrap et jquery afin que l'application puisse fonctionner hors connexion -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" integrity="sha384-tViUnnbYAV00FLIhhi3v/dWt3Jxw4gZQcNoSCxCIFNJVCx7/D55/wXsrNIRANwdD" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
-    <!-- END : Librairiesstyles -->
+    <!-- END : Librairies styles -->
     <link rel="stylesheet" href="../styles/index.css" /> 
   </head>
   <body>
@@ -18,326 +19,800 @@
             <h2 class="title">Outils Bureau <br /> d'Etudes Electrique</h2>
             <ul class="nav nav-tabs flex-column" id="navbar">
                 <li class="nav-item">
-                    <button class="nav-link d-flex gap-2 active" data-bs-target="#accueil"><i class="bi bi-house-door"></i> Accueil</a>
+                    <button class="nav-link d-flex gap-2 active" data-bs-target="#accueil" id="accueil-menu-btn"><i class="bi bi-house-door"></i> Accueil</button>
                 </li>
                 <li class="nav-item">
-                    <button class="nav-link d-flex gap-2" data-bs-target="#calculs"><i class="bi bi-calculator"></i> Calculs</a>
+                    <button class="nav-link d-flex gap-2" data-bs-target="#electricite" id="electricite-menu-btn"><i class="bi bi-lightning"></i> Electricité</button>
                 </li>
                 <li class="nav-item">
-                    <button class="nav-link d-flex gap-2" data-bs-target="#generateur-doe"><i class="bi bi-magic"></i> Générateur de DOE</a>
+                    <button class="nav-link d-flex gap-2" data-bs-target="#automatisme" id="automatisme-menu-btn"><bi class="bi-cpu"></bi> Automatisme</button>
                 </li>
                 <li class="nav-item">
-                    <button class="nav-link d-flex gap-2" data-bs-target="#simplificateur-nomenclature"><i class="bi bi-magic"></i> Simplificateur de nomenclature</a>
-                </li>
-                <li class="nav-item">
-                    <button class="nav-link d-flex gap-2" data-bs-target="#autres"><bi class="bi-grid"></bi> Autres</a>
+                    <button class="nav-link d-flex gap-2" data-bs-target="#documentations" id="documentations-menu-btn"><bi class="bi-book"></bi> Documentations</button>
+                    <button class="nav-link d-flex gap-2" data-bs-target="#parametres" id="parametres-menu-btn"><bi class="bi-gear"></bi> Paramètres</button>
                 </li>
             </ul>
         </div>
         <div class="app-infos p-1">  
-            <div class="version">V1.1.0</div>   
+            <div class="version">V2.0.0</div>   
             <div class="author">Vivian NKOUANANG</div>   
             <div class="author-email">dev.vporel@gmail.com</div> 
         </div>
     </div>
    <main>
-        <section class="tab-content">
+        <section class="tab-content" id="zone-sections">
             <div id="accueil" class="tab-pane fade active show">
-                <div class="d-flex flex-column justify-content-center align-items-center gap-4" style="min-height:90vh">
-                    <img src="../assets/images/icon.png" alt=""/>
-                    <h1 class="text-center" style="font-size: 4rem">Outils Bureau <br /> d'Etudes Electrique</h1>
-                    <p class="fs-3 text-center" style="background: var(--primary-color); color: white; padding: 2rem; border-radius: 20px;">
-                        Un ensemble d'outils destinés à <br /> faciliter l'exécution de certaines tâches
+                <div class="d-flex flex-column justify-content-center align-items-center gap-4">
+                    <img src="../assets/images/icon.png" alt="" width="300px"/>
+                    <h1 class="text-center" style="font-size: 3rem">Outils Bureau <br /> d'Etudes Electrique</h1>
+                    <p class="fs-3 text-center">
+                        Un ensemble d'outils destinés à <br /> automatiser l'exécution de certaines tâches
                     </p>
                 </div>
+                <div class="d-flex justify-content-center my-4"><hr class="w-25"/></div>
+                <h1 class="text-center my-5">Que voulez-vous faire ?</h1>
+                <div class="d-flex gap-3 align-items-center justify-content-between mt-5">
+                    <button class="btn btn-outline-primary w-100 py-5 fs-3 d-flex flex-column gap-3" onclick="document.getElementById('electricite-menu-btn').click()"><i class="bi bi-lightning fs-1"></i> Electricité</button>
+                    <button class="btn btn-outline-primary w-100 py-5 fs-3 d-flex flex-column gap-3" onclick="document.getElementById('automatisme-menu-btn').click()"><i class="bi bi-cpu fs-1"></i> Automatisme</button>
+                    <button class="btn btn-outline-primary w-100 py-5 fs-3 d-flex flex-column gap-3" onclick="document.getElementById('documentations-menu-btn').click()"><i class="bi bi-book fs-1"></i> Documentations</button>
+                    <button class="btn btn-outline-primary w-100 py-5 fs-3 d-flex flex-column gap-3" onclick="document.getElementById('parametres-menu-btn').click()"><i class="bi bi-gear fs-1"></i> Paramètres</button>
+                </div>
             </div>
-            <div id="calculs" class="tab-pane fade">
-                <h4 class="my-2">Puissance > Courant</h4>
-                <div class="row mt-3">
-                    <div class="col-6">
-                        <div class="border rounded p-2">
-                            <h6 class="mb-3">Monophasé (V = 230V)</h4>
-                            <div class="row">
-                                <div class="col">
-                                    <label for="calculs-P-I-monophase-puissance" class="form-label">Puissance</label>
-                                    <div class="d-flex align-items-center gap-2">
-                                        <input type="number" class="form-control" id="calculs-P-I-monophase-puissance" />
-                                        <span>kW</span>
+            
+            <div id="electricite" class="tab-pane fade">
+                <div class="accordion" id="accordion-electricite">
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#calculs" aria-expanded="false">
+                                <i class="bi bi-calculator" style="margin-right: 5px"></i> Calculs
+                            </button>
+                        </h2>
+                        <div id="calculs" class="accordion-collapse collapse show" data-bs-parent="#accordion-electricite">
+                        <div class="accordion-body">
+                            <h4 class="my-2">Puissance > Courant</h4>
+                            <div class="row mt-3">
+                                <div class="col-6">
+                                    <div class="border rounded p-2">
+                                        <h6 class="mb-3">Monophasé (V = 230V)</h4>
+                                        <div class="row">
+                                            <div class="col">
+                                                <label for="calculs-P-I-monophase-puissance" class="form-label">Puissance</label>
+                                                <div class="d-flex align-items-center gap-2">
+                                                    <input type="number" class="form-control" id="calculs-P-I-monophase-puissance" />
+                                                    <span>kW</span>
+                                                </div>
+                                            </div>
+                                            <div class="col">
+                                                <label for="calculs-P-I-monophase-cosphi" class="form-label">cos(&phi;)</label>
+                                                <input type="number" value="1" class="form-control" id="calculs-P-I-monophase-cosphi" />
+                                            </div>
+                                            <div class="col">
+                                                <label for="calculs-P-I-monophase-courant" class="form-label">Courant</label> 
+                                                <div class="d-flex align-items-center gap-2">
+                                                    <input type="number" type="email" class="form-control readonly" id="calculs-P-I-monophase-courant" readonly/>
+                                                    <span>A</span>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="col">
-                                    <label for="calculs-P-I-monophase-cosphi" class="form-label">cos(&phi;)</label>
-                                    <input type="number" value="1" class="form-control" id="calculs-P-I-monophase-cosphi" />
-                                </div>
-                                <div class="col">
-                                    <label for="calculs-P-I-monophase-courant" class="form-label">Courant</label> 
-                                    <div class="d-flex align-items-center gap-2">
-                                        <input type="number" type="email" class="form-control readonly" id="calculs-P-I-monophase-courant" readonly/>
-                                        <span>A</span>
+                                <div class="col-6">
+                                    <div class="border rounded p-2">
+                                        <h6 class="mb-3">Triphasé (U = 400V)</h4>
+                                            <div class="row">
+                                                <div class="col">
+                                                    <label for="calculs-P-I-triphase-puissance" class="form-label">Puissance</label>
+                                                    <div class="d-flex align-items-center gap-2">
+                                                        <input type="number" class="form-control" id="calculs-P-I-triphase-puissance" />
+                                                        <span>kW</span>
+                                                    </div>
+                                                </div>
+                                                <div class="col">
+                                                    <label for="calculs-P-I-triphase-cosphi" class="form-label">cos(&phi;)</label>
+                                                    <input type="number" value="1" class="form-control" id="calculs-P-I-triphase-cosphi" />
+                                                </div>
+                                                <div class="col">
+                                                    <label for="calculs-P-I-triphase-courant" class="form-label">Courant</label>
+                                                    <div class="d-flex align-items-center gap-2">
+                                                        <input type="number" type="email" class="form-control readonly" id="calculs-P-I-triphase-courant" readonly/>
+                                                        <span>A</span>
+                                                    </div>
+                                                </div>
+                                            </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
+                        </div>
                     </div>
-                    <div class="col-6">
-                        <div class="border rounded p-2">
-                            <h6 class="mb-3">Triphasé (U = 400V)</h4>
-                                <div class="row">
-                                    <div class="col">
-                                        <label for="calculs-P-I-triphase-puissance" class="form-label">Puissance</label>
-                                        <div class="d-flex align-items-center gap-2">
-                                            <input type="number" class="form-control" id="calculs-P-I-triphase-puissance" />
-                                            <span>kW</span>
-                                        </div>
-                                    </div>
-                                    <div class="col">
-                                        <label for="calculs-P-I-triphase-cosphi" class="form-label">cos(&phi;)</label>
-                                        <input type="number" value="1" class="form-control" id="calculs-P-I-triphase-cosphi" />
-                                    </div>
-                                    <div class="col">
-                                        <label for="calculs-P-I-triphase-courant" class="form-label">Courant</label>
-                                        <div class="d-flex align-items-center gap-2">
-                                            <input type="number" type="email" class="form-control readonly" id="calculs-P-I-triphase-courant" readonly/>
-                                            <span>A</span>
-                                        </div>
-                                    </div>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#generateur-doe" aria-expanded="false">
+                                <i class="bi bi-magic" style="margin-right: 5px"></i> Générateur de DOE
+                            </button>
+                        </h2>
+                        <div id="generateur-doe" class="accordion-collapse collapse" data-bs-parent="#accordion-electricite">
+                        <div class="accordion-body">
+                            <p style="font-size: 15px" class="text-center">
+                                Générer le DOE dans un dossier à partir d'une base de fichiers et d'une nomenclature <br />
+                                Les références  non trouvés sont ensuite affichées pour ne télécharger que celles-ci
+                            </p>
+                            <div class="d-flex gap-2 align-items-center mt-2">
+                                <label style="width: 365px">Dossier de sortie</label>
+                                <input value="" readonly class="form-control readonly" id="generateur-doe-dossier-sortie" />
+                                <button type="button" class="btn btn-secondary" id="generateur-doe-dossier-sortie-btn"><i class="bi bi-pen"></i></button>
+                            </div>
+                            <div class="d-flex gap-2 align-items-center mt-2">
+                                <label style="width: 365px">Fichier nomenclature (Excel)</label>
+                                <input value="" readonly class="form-control readonly" id="generateur-doe-fichier-nomenclature" />
+                                <button type="button" class="btn btn-secondary" id="generateur-doe-fichier-nomenclature-btn"><i class="bi bi-pen"></i></button>
+                            </div>
+                            <div class="d-flex gap-2 align-items-center mt-2">
+                                <label style="width: 350px">Colonne des références</label>
+                                <select class="form-select" value="E" id="generateur-doe-colonne-references" >
+                                    <option value="A">A</option>
+                                    <option value="B">B</option>
+                                    <option value="C">C</option>
+                                    <option value="D">D</option>
+                                    <option value="E" selected>E</option>
+                                    <option value="F">F</option>
+                                    <option value="G">G</option>
+                                </select>
+                            </div>
+                            <div class="d-flex align-items-center justify-content-end gap-2 mt-2">
+                                <span id="generateur-doe-progression"></span>
+                                <button type="button" class="btn btn-primary d-flex align-items-center gap-2 px-4 py-2" id="generateur-doe-generer-btn">
+                                    <i class="bi bi-magic icon"></i> 
+                                    <span class="spinner spinner-border d-none" style="width: 20px; height: 20px"></span>
+                                    Générer
+                                </button>
+                            </div>
+                            <div id="generateur-doe-resultat" class="d-none">
+                                <div class="mb-2 fw-bold">Références à télécharger (<span class="text-primary" id="generateur-doe-nb-refs-non-trouvees">0</span>)</div>
+                                <textarea class="form-control readonly" readonly style="width: 100%; height: 150px;" id="generateur-doe-resultat-textarea"></textarea>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#simplificateur-nomenclature" aria-expanded="false">
+                                <i class="bi bi-filter" style="margin-right: 5px"></i> Simplificateur de nomenclature
+                            </button>
+                        </h2>
+                        <div id="simplificateur-nomenclature" class="accordion-collapse collapse" data-bs-parent="#accordion-electricite">
+                        <div class="accordion-body">
+                            <p style="font-size: 15px" class="text-center">
+                                Simplifier une ou  plusieurs nomenclature en supprimant les doublons dans les références <br />
+                                Les références sont triées par ordre alphabétique <br />
+                                Pour chaque référence, la quantité et les symboles associés seront affichés
+                            </p>
+                            <div class="">
+                                <div class="d-flex gap-2 align-items-center">
+                                    <label style="width: 270px">Fichier(s) de nomenclature(s) (Excel)</label>
+                                    <button type="button" class="btn btn-primary d-flex align-items-center gap-2 px-4 py-2" id="simplificateur-nomenclature-fichier-entree-btn"><i class="bi bi-plus"></i> Ajouter</button>
                                 </div>
+                                <div class="border mt-2 rounded p-2" id="simplificateur-nomenclature-fichiers-entree-list">
+                                    Ajoutez un/plusieurs fichier(s)
+                                </div>
+                            </div>
+                            <div class="d-flex gap-2 align-items-center mt-2">
+                                <label style="width: 365px">Fichier de sortie (Excel)</label>
+                                <input value="" readonly class="form-control readonly" id="simplificateur-nomenclature-fichier-sortie" />
+                                <button type="button" class="btn btn-secondary" id="simplificateur-nomenclature-fichier-sortie-btn"><i class="bi bi-pen"></i></button>
+                            </div>
+                            <div class="d-flex gap-2 align-items-center mt-2">
+                                <label style="width: 350px">Colonne Etiquette</label>
+                                <select class="form-select" value="B" id="simplificateur-nomenclature-colonne-etiquette" >
+                                    <option value="A">A</option>
+                                    <option value="B" selected>B</option>
+                                    <option value="C">C</option>
+                                    <option value="D">D</option>
+                                    <option value="E">E</option>
+                                    <option value="F">F</option>
+                                    <option value="G">G</option>
+                                    <option value="H">H</option>
+                                    <option value="I">I</option>
+                                </select>
+                            </div>
+                            <div class="d-flex gap-2 align-items-center mt-2">
+                                <label style="width: 350px">Colonne Description</label>
+                                <select class="form-select" value="D" id="simplificateur-nomenclature-colonne-description" >
+                                    <option value="A">A</option>
+                                    <option value="B">B</option>
+                                    <option value="C">C</option>
+                                    <option value="D" selected>D</option>
+                                    <option value="E">E</option>
+                                    <option value="F">F</option>
+                                    <option value="G">G</option>
+                                    <option value="H">H</option>
+                                    <option value="I">I</option>
+                                </select>
+                            </div>
+                            <div class="d-flex gap-2 align-items-center mt-2">
+                                <label style="width: 350px">Colonne ID Catalogue</label>
+                                <select class="form-select" value="E" id="simplificateur-nomenclature-colonne-id" >
+                                    <option value="A">A</option>
+                                    <option value="B">B</option>
+                                    <option value="C">C</option>
+                                    <option value="D">D</option>
+                                    <option value="E" selected>E</option>
+                                    <option value="F">F</option>
+                                    <option value="G">G</option>
+                                    <option value="H">H</option>
+                                    <option value="I">I</option>
+                                </select>
+                            </div>
+                            <div class="d-flex gap-2 align-items-center mt-2">
+                                <label style="width: 350px">Colonne Fabricant</label>
+                                <select class="form-select" value="F" id="simplificateur-nomenclature-colonne-fabricant" >
+                                    <option value="A">A</option>
+                                    <option value="B">B</option>
+                                    <option value="C">C</option>
+                                    <option value="D">D</option>
+                                    <option value="E">E</option>
+                                    <option value="F" selected>F</option>
+                                    <option value="G">G</option>
+                                    <option value="H">H</option>
+                                    <option value="I">I</option>
+                                </select>
+                            </div>
+                            <div class="d-flex gap-2 align-items-center mt-2">
+                                <label style="width: 350px">Colonne Quantité</label>
+                                <select class="form-select" value="G" id="simplificateur-nomenclature-colonne-quantite" >
+                                    <option value="A">A</option>
+                                    <option value="B">B</option>
+                                    <option value="C">C</option>
+                                    <option value="D">D</option>
+                                    <option value="E">E</option>
+                                    <option value="F">F</option>
+                                    <option value="G" selected>G</option>
+                                    <option value="H">H</option>
+                                    <option value="I">I</option>
+                                </select>
+                            </div>
+                            <div class="d-flex gap-2 align-items-center mt-2">
+                                <label style="width: 350px">Trier par</label>
+                                <select class="form-select" value="id" id="simplificateur-nomenclature-propriete-tri" >
+                                    <option value="id" selected>ID Catalogue</option>
+                                    <option value="fabricant">Fabricant</option>
+                                </select>
+                            </div>
+                            <p style="font-size: 15px" class="text-center mt-3">
+                                Les lettres des colonnes sont à modifier si elles ne correspondent pas à la structure du fichier nomenclature
+                            </p>
+                            <hr />
+                            <h5>Grouper</h5>
+                            <div class="d-flex gap-2 align-items-center mt-2">
+                                <label style="width: 350px">Colonne</label>
+                                <select class="form-select" value="" id="simplificateur-nomenclature-groupe-colonne" >
+                                    <option value="">Aucune</option>
+                                    <option value="A">A</option>
+                                    <option value="B">B</option>
+                                    <option value="C">C</option>
+                                    <option value="D">D</option>
+                                    <option value="E">E</option>
+                                    <option value="F">F</option>
+                                    <option value="G">G</option>
+                                    <option value="H">H</option>
+                                    <option value="I">I</option>
+                                </select>
+                            </div>
+                            <hr />
+                            <h5>Filtrer</h5>
+                            <div class="d-flex gap-2 align-items-center mt-2">
+                                <h6 style="margin-bottom: 0;">#1</h6>
+                                <label style="width: 150px">Colonne</label>
+                                <select class="form-select" value="" id="simplificateur-nomenclature-filtre-1-colonne" >
+                                    <option value="">Aucune</option>
+                                    <option value="A">A</option>
+                                    <option value="B">B</option>
+                                    <option value="C">C</option>
+                                    <option value="D">D</option>
+                                    <option value="E">E</option>
+                                    <option value="F">F</option>
+                                    <option value="G">G</option>
+                                    <option value="H">H</option>
+                                    <option value="I">I</option>
+                                </select>
+                                <input value="" placeholder="Valeur(s)" class="form-control" id="simplificateur-nomenclature-filtre-1-valeurs" />
+                            </div>
+                            <div class="d-flex gap-2 align-items-center mt-2">
+                                <h6 style="margin-bottom: 0;">#2</h6>
+                                <label style="width: 150px">Colonne</label>
+                                <select class="form-select" value="" id="simplificateur-nomenclature-filtre-2-colonne" >
+                                    <option value="">Aucune</option>
+                                    <option value="A">A</option>
+                                    <option value="B">B</option>
+                                    <option value="C">C</option>
+                                    <option value="D">D</option>
+                                    <option value="E">E</option>
+                                    <option value="F">F</option>
+                                    <option value="G">G</option>
+                                    <option value="H">H</option>
+                                    <option value="I">I</option>
+                                </select>
+                                <input value="" placeholder="Valeur(s)" class="form-control" id="simplificateur-nomenclature-filtre-2-valeurs" />
+                            </div>
+                            <div class="d-flex align-items-center justify-content-end mt-2">
+                                <button type="button" class="btn btn-primary d-flex align-items-center gap-2 px-4 py-2" id="simplificateur-nomenclature-executer-btn">
+                                    <i class="bi bi-magic icon"></i> 
+                                    <span class="spinner spinner-border d-none" style="width: 20px; height: 20px"></span>
+                                    Exécuter
+                                </button>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#controleur-normes" aria-expanded="false">
+                                <i class="bi bi-eye" style="margin-right: 5px"></i> Controleur de normes
+                            </button>
+                        </h2>
+                        <div id="controleur-normes" class="accordion-collapse collapse" data-bs-parent="#accordion-electricite">
+                        <div class="accordion-body">
+                            <p>Rechercher les fichiers de documentation contenant un ou plusieurs normes spécifiques</p>
+                            <div class="d-flex gap-2 align-items-center">
+                                <label style="width: 150px">Fichier(s) à traiter</label>
+                                <button type="button" class="btn btn-primary d-flex align-items-center gap-2 px-4 py-2" id="controleur-normes-selectionner-fichiers-btn"><i class="bi bi-plus"></i> Ajouter</button>
+                                <button type="button" class="btn btn-danger d-flex align-items-center gap-2 px-4 py-2" id="controleur-normes-fichiers-tout-effacer-btn"><i class="bi bi-trash"></i> Tout effacer</button>
+                            </div>
+                            <div class="border mt-2 rounded p-2" id="controleur-normes-fichiers-selectionnes-div">
+                                Ajoutez un/plusieurs fichier(s)
+                            </div>
+                            <div class="d-flex gap-2 align-items-center mt-2">
+                                    <label style="width: 700px"><span class="fw-bold">OU</span> Choisir un dossier - seuls les fichiers pdfs seront retenus</label>
+                                    <input value="" readonly class="form-control readonly" id="controleur-normes-dossier-entree-input" />
+                                    <button type="button" class="btn btn-secondary" id="controleur-normes-dossier-entree-btn"><i class="bi bi-pen"></i></button>
+                                    <button type="button" class="btn btn-danger" id="controleur-normes-dossier-entree-effacer-btn"><i class="bi bi-x"></i></button>
+                                </div>
+                            <div class="mt-2">
+                                <label>Normes à chercher  - une norme par ligne</label>
+                                <textarea id="controleur-normes-normes-textarea" class="form-control mt-2 w-100" style="min-height: 100px; max-height: 300px;"></textarea>
+                            </div>
+                            <div class="d-flex align-items-center justify-content-end gap-2 mt-2">
+                                <span id="controleur-normes-progression-span"></span>
+                                <button type="button" class="btn btn-primary d-flex align-items-center gap-2 px-4 py-2" id="controleur-normes-executer-btn">
+                                    <i class="bi bi-magic icon"></i> 
+                                    <span class="spinner spinner-border d-none" style="width: 20px; height: 20px"></span>
+                                    Exécuter
+                                </button>
+                            </div>
+                            <div id="controleur-normes-resultats-positifs-container-div" class="d-none">
+                                <h6 style="color: green">Resultats positifs (<span id="controleur-normes-nb-resultats-positifs-span"></span> références)</h6>
+                                <div id="controleur-normes-resultats-positifs-div" style="max-height: 400px; overflow: auto; border: 1px solid lightgray; border-radius: 5px; padding: 5px;">
+                                    <table style="width: 100%;">
+                                        <thead style="border-bottom: 1px solid lightgray;">
+                                            <th style="width: 200px">REFERENCE</th>
+                                            <th style="width: 180px">FABRICANT</th>
+                                            <th style="width: 330px">FICHIER</th>
+                                            <th style="width: auto">NORMES</th>
+                                            <th style="width: 80px">ACTIONS</th>
+                                        </thead>
+                                    <tbody></tbody>
+                                    </table>
+                                </div>
+                                <div class="d-flex align-items-center justify-content-end gap-2 mt-2">
+                                    <button type="button" class="btn btn-primary d-flex align-items-center gap-2 px-4 py-2" id="controleur-normes-resultats-positifs-exporter-btn">
+                                        <i class="bi bi-file-earmark-arrow-up icon"></i> 
+                                        <span class="spinner spinner-border d-none" style="width: 20px; height: 20px"></span>
+                                        Exporter en Excel
+                                    </button>
+                                    <button type="button" class="btn btn-primary d-flex align-items-center gap-2 px-4 py-2" id="controleur-normes-resultats-positifs-copier-btn">
+                                        <i class="bi bi-copy icon"></i> 
+                                        <span class="spinner spinner-border d-none" style="width: 20px; height: 20px"></span>
+                                        Copier les fichiers dans un dossier
+                                    </button>
+                                </div>
+                            </div>
+                            <div id="controleur-normes-resultats-negatifs-container-div" class="d-none mt-2">
+                                <h6 style="color: red">Resultats négatifs (<span id="controleur-normes-nb-resultats-negatifs-span"></span> fichiers)</h6>
+                                <div id="controleur-normes-resultats-negatifs-div" style="max-height: 400px; overflow: auto; border: 1px solid lightgray; border-radius: 5px; padding: 5px;">
+                                    <table style="width: 100%;">
+                                        <thead style="border-bottom: 1px solid lightgray;">
+                                            <th style="width: 200px">REFERENCE</th>
+                                            <th style="width: 180px">FABRICANT</th>
+                                            <th style="width: 330px">FICHIER</th>
+                                            <th style="width: auto">MESSAGE</th>
+                                            <th style="width: 80px">ACTIONS</th>
+                                        </thead>
+                                        <tbody></tbody>
+                                    </table>
+                                </div>
+                                <div class="d-flex align-items-center justify-content-end gap-2 mt-2">
+                                    <button type="button" class="btn btn-primary d-flex align-items-center gap-2 px-4 py-2" id="controleur-normes-resultats-negatifs-exporter-btn">
+                                        <i class="bi bi-file-earmark-arrow-up icon"></i> 
+                                        <span class="spinner spinner-border d-none" style="width: 20px; height: 20px"></span>
+                                        Exporter en Excel
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
                         </div>
                     </div>
                 </div>
             </div>
-                
-            <div id="generateur-doe" class="tab-pane fade">
-                <p style="font-size: 15px" class="text-center">
-                    Générer le DOE dans un dossier à partir d'une base de fichiers et d'une nomenclature <br />
-                    Les références  non trouvés sont ensuite affichées pour ne télécharger que celles-ci
-                </p>
-                <div class="d-flex gap-2 align-items-center">
-                    <label style="width: 365px">Dossier base de données</label>
-                    <input readonly class="form-control readonly" id="generateur-doe-dossier-bd" />
-                    <button type="button" class="btn btn-secondary" id="generateur-doe-dossier-bd-btn"><i class="bi bi-pen"></i></button>
-                </div>
-                <div class="d-flex justify-content-end align-items-center gap-2 mt-2">
-                    <i class="bi bi-arrow-90deg-up"></i>
-                    <input class="form-check-input" type="checkbox" value="" id="generateur-doe-enregistrer-dossier-db">
-                    <label class="form-check-label" for="generateur-doe-enregistrer-dossier-db">
-                        Se souvenir de ce dossier
-                    </label>
-                </div>
-                <div class="d-flex gap-2 align-items-center mt-2">
-                    <label style="width: 365px">Dossier de sortie</label>
-                    <input value="" readonly class="form-control readonly" id="generateur-doe-dossier-sortie" />
-                    <button type="button" class="btn btn-secondary" id="generateur-doe-dossier-sortie-btn"><i class="bi bi-pen"></i></button>
-                </div>
-                <div class="d-flex gap-2 align-items-center mt-2">
-                    <label style="width: 365px">Fichier nomenclature (Excel)</label>
-                    <input value="" readonly class="form-control readonly" id="generateur-doe-fichier-nomenclature" />
-                    <button type="button" class="btn btn-secondary" id="generateur-doe-fichier-nomenclature-btn"><i class="bi bi-pen"></i></button>
-                </div>
-                <div class="d-flex gap-2 align-items-center mt-2">
-                    <label style="width: 350px">Colonne des références</label>
-                    <select class="form-select" value="E" id="generateur-doe-colonne-references" >
-                        <option value="A">A</option>
-                        <option value="B">B</option>
-                        <option value="C">C</option>
-                        <option value="D">D</option>
-                        <option value="E" selected>E</option>
-                        <option value="F">F</option>
-                        <option value="G">G</option>
-                    </select>
-                </div>
-                <div class="d-flex align-items-center justify-content-end gap-2 mt-2">
-                    <span id="generateur-doe-progression"></span>
-                    <button type="button" class="btn btn-primary d-flex align-items-center gap-2 px-4 py-2" id="generateur-doe-colonne-generer-btn">
-                        <i class="bi bi-magic icon"></i> 
-                        <span class="spinner spinner-border d-none" style="width: 20px; height: 20px"></span>
-                        Générer
-                    </button>
-                </div>
-                <div id="generateur-doe-resultat" class="d-none">
-                    <div class="mb-2 fw-bold">Références à télécharger (<span class="text-primary" id="generateur-doe-nb-refs-non-trouvees">0</span>)</div>
-                    <textarea class="form-control readonly" style="width: 100%; height: 150px;" id="generateur-doe-resultat-textarea"></textarea>
-                </div>
-            </div>
 
-            <div id="simplificateur-nomenclature" class="tab-pane fade">
-                <p style="font-size: 15px" class="text-center">
-                    Simplifier une ou  plusieurs nomenclature en supprimant les doublons dans les références <br />
-                    Les références sont triées par ordre alphabétique <br />
-                    Pour chaque référence, la quantité et les symboles associés seront affichés
-                </p>
-                <div class="">
-                    <div class="d-flex gap-2 align-items-center">
-                        <label style="width: 285px">Fichier(s) de nomenclature(s) (Excel)</label>
-                        <button type="button" class="btn btn-primary d-flex align-items-center gap-2 px-4 py-2" id="simplificateur-nomenclature-fichier-entree-btn"><i class="bi bi-plus"></i> Ajouter</button>
-                    </div>
-                    <div class="border mt-2 rounded p-2" id="simplificateur-nomenclature-fichiers-entree-list">
-                        Ajoutez un/plusieurs fichier(s)
-                    </div>
-                </div>
-                <div class="d-flex gap-2 align-items-center mt-2">
-                    <label style="width: 365px">Fichier de sortie (Excel)</label>
-                    <input value="" readonly class="form-control readonly" id="simplificateur-nomenclature-fichier-sortie" />
-                    <button type="button" class="btn btn-secondary" id="simplificateur-nomenclature-fichier-sortie-btn"><i class="bi bi-pen"></i></button>
-                </div>
-                <div class="d-flex gap-2 align-items-center mt-2">
-                    <label style="width: 350px">Colonne Etiquette</label>
-                    <select class="form-select" value="B" id="simplificateur-nomenclature-colonne-etiquette" >
-                        <option value="A">A</option>
-                        <option value="B" selected>B</option>
-                        <option value="C">C</option>
-                        <option value="D">D</option>
-                        <option value="E">E</option>
-                        <option value="F">F</option>
-                        <option value="G">G</option>
-                    </select>
-                </div>
-                <div class="d-flex gap-2 align-items-center mt-2">
-                    <label style="width: 350px">Colonne Description</label>
-                    <select class="form-select" value="D" id="simplificateur-nomenclature-colonne-description" >
-                        <option value="A">A</option>
-                        <option value="B">B</option>
-                        <option value="C">C</option>
-                        <option value="D" selected>D</option>
-                        <option value="E">E</option>
-                        <option value="F">F</option>
-                        <option value="G">G</option>
-                    </select>
-                </div>
-                <div class="d-flex gap-2 align-items-center mt-2">
-                    <label style="width: 350px">Colonne ID Catalogue</label>
-                    <select class="form-select" value="E" id="simplificateur-nomenclature-colonne-id" >
-                        <option value="A">A</option>
-                        <option value="B">B</option>
-                        <option value="C">C</option>
-                        <option value="D">D</option>
-                        <option value="E" selected>E</option>
-                        <option value="F">F</option>
-                        <option value="G">G</option>
-                    </select>
-                </div>
-                <div class="d-flex gap-2 align-items-center mt-2">
-                    <label style="width: 350px">Colonne Fabricant</label>
-                    <select class="form-select" value="F" id="simplificateur-nomenclature-colonne-fabricant" >
-                        <option value="A">A</option>
-                        <option value="B">B</option>
-                        <option value="C">C</option>
-                        <option value="D">D</option>
-                        <option value="E">E</option>
-                        <option value="F" selected>F</option>
-                        <option value="G">G</option>
-                    </select>
-                </div>
-                <div class="d-flex gap-2 align-items-center mt-2">
-                    <label style="width: 350px">Colonne Quantité</label>
-                    <select class="form-select" value="G" id="simplificateur-nomenclature-colonne-quantite" >
-                        <option value="A">A</option>
-                        <option value="B">B</option>
-                        <option value="C">C</option>
-                        <option value="D">D</option>
-                        <option value="E">E</option>
-                        <option value="F">F</option>
-                        <option value="G" selected>G</option>
-                    </select>
-                </div>
-                <div class="d-flex gap-2 align-items-center mt-2">
-                    <label style="width: 350px">Trier par</label>
-                    <select class="form-select" value="id" id="simplificateur-nomenclature-propriete-tri" >
-                        <option value="id" selected>ID Catalogue</option>
-                        <option value="fabricant">Fabricant</option>
-                    </select>
-                </div>
-                <p style="font-size: 15px" class="text-center mt-3">
-                    Les lettres des colonnes sont à modifier si elles ne correspondent pas à la structure du fichier nomenclature
-                </p>
-                <div class="d-flex align-items-center justify-content-end mt-2">
-                    <button type="button" class="btn btn-primary d-flex align-items-center gap-2 px-4 py-2" id="simplificateur-nomenclature-executer-btn">
-                        <i class="bi bi-magic icon"></i> 
-                        <span class="spinner spinner-border d-none" style="width: 20px; height: 20px"></span>
-                        Exécuter
-                    </button>
-                </div>
-            </div>
-
-            <div id="autres" class="tab-pane fade">
-                <h4 class="mt-2 mb-3">Télécharger une datasheet</h4>
+            <div id="automatisme" class="tab-pane fade">
                 <div class="accordion">
                     <div class="accordion-item">
                         <h2 class="accordion-header">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#telecharger-datasheet-harting" aria-expanded="false" aria-controls="collapseTwo">
-                                Harting
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#automatisme-schneider-electric" aria-expanded="false">
+                                Schneider Electric
                             </button>
                         </h2>
-                        <div id="telecharger-datasheet-harting" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                        <div id="automatisme-schneider-electric" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
                             <div class="accordion-body">
-                                <p style="font-size: 12px">
-                                    La fichier est mis dans le dossier 'Téléchargements'
-                                </p>
-                                <div class="d-flex align-items-center gap-2">
-                                    <input type="number" value="" class="form-control" id="telecharger-datasheet-harting-ref" placeholder="Référence"/>
-                                    <select class="form-select" value="FR" style="width: 100px" id="telecharger-datasheet-harting-lang" >
-                                        <option value="FR">FR</option>
-                                        <option value="EN">EN</option>
-                                    </select>
-                                    <button type="button" class="btn btn-primary d-flex align-items-center gap-2 p-2" id="telecharger-datasheet-harting-btn">
-                                        <i class="bi bi-download icon"></i> 
-                                        <span class="spinner spinner-border d-none" style="width: 20px; height: 20px"></span>
-                                        Télécharger
-                                    </button>
+                                <div id="schneider-generateur-xsy">
+                                    <h4>Création de fichier de variables </h4>
+                                    <p style="font-size: 13px">
+                                        L'ajout de variables peut se faire en important un fichier .XSY <br />
+                                        A partir d'un fichier excel contenant vos adresses et mnémoniques, <br />
+                                        cette section crée le fichier .XSY à importer dans Control Expert <br />
+                                        Les lignes sans mnémonique seront ignorées
+                                    </p>
+                                    <div class="d-flex gap-2 align-items-center mt-2">
+                                        <label style="width: 365px">Fichier de mnémoniques (Excel)</label>
+                                        <input value="" readonly class="form-control readonly" id="schneider-generateur-xsy-fichier-mnemoniques" />
+                                        <button type="button" class="btn btn-secondary" id="schneider-generateur-xsy-fichier-mnemoniques-btn"><i class="bi bi-pen"></i></button>
+                                    </div>
+                                    <div class="d-flex gap-2 align-items-center mt-2">
+                                        <label style="width: 350px">Feuille du fichier Excel</label>
+                                        <select class="form-select" value="0" id="schneider-generateur-xsy-feuille-fichier-mnemoniques" >
+                                            <option value="0">1</option>
+                                            <option value="1">2</option>
+                                            <option value="2">3</option>
+                                            <option value="3">4</option>
+                                            <option value="4">5</option>
+                                        </select>
+                                    </div>
+                                    <div class="d-flex gap-2 align-items-center mt-2">
+                                        <label style="width: 365px">Fichier de sortie (XSY)</label>
+                                        <input value="" readonly class="form-control readonly" id="schneider-generateur-xsy-fichier-sortie" />
+                                        <button type="button" class="btn btn-secondary" id="schneider-generateur-xsy-fichier-sortie-btn"><i class="bi bi-pen"></i></button>
+                                    </div>
+                                    <div class="d-flex gap-2 align-items-center mt-2">
+                                        <label style="width: 350px">Colonne Adresse</label>
+                                        <select class="form-select" value="" id="schneider-generateur-xsy-colonne-adresse" >
+                                            <option value=""></option>
+                                            <option value="A">A</option>
+                                            <option value="B">B</option>
+                                            <option value="C">C</option>
+                                            <option value="D">D</option>
+                                            <option value="E">E</option>
+                                            <option value="F">F</option>
+                                            <option value="G">G</option>
+                                            <option value="H">H</option>
+                                            <option value="I">I</option>
+                                        </select>
+                                    </div>
+                                    <div class="d-flex gap-2 align-items-center mt-2">
+                                        <label style="width: 350px">Colonne Mnémonique</label>
+                                        <select class="form-select" value="" id="schneider-generateur-xsy-colonne-mnemonique" >
+                                            <option value=""></option>
+                                            <option value="A">A</option>
+                                            <option value="B">B</option>
+                                            <option value="C">C</option>
+                                            <option value="D">D</option>
+                                            <option value="E">E</option>
+                                            <option value="F">F</option>
+                                            <option value="G">G</option>
+                                            <option value="H">H</option>
+                                            <option value="I">I</option>
+                                        </select>
+                                    </div>
+                                    <div class="mt-1 fst-italic" style="font-size: 12px">Les mnémoniques doivent contenir uniquement des lettres, des chiffres ou des underscores, longeur maximale : 32 caractères</div>
+                                    <div class="d-flex justify-content-end align-items-center gap-2 mt-2">
+                                        <i class="bi bi-arrow-90deg-up"></i>
+                                        <input class="form-check-input" type="checkbox" checked id="schneider-generateur-xsy-ajouter-prefixes">
+                                        <label class="form-check-label" for="schneider-generateur-xsy-ajouter-prefixes">
+                                            Ajouter les préfixes IN, OUT, EA, SA pour les entrées/sorties
+                                        </label>
+                                    </div>
+                                    <div class="d-flex gap-2 align-items-center mt-2">
+                                        <label style="width: 350px">Colonne Type</label>
+                                        <select class="form-select" value="" id="schneider-generateur-xsy-colonne-type" >
+                                            <option value=""></option>
+                                            <option value="A">A</option>
+                                            <option value="B">B</option>
+                                            <option value="C">C</option>
+                                            <option value="D">D</option>
+                                            <option value="E">E</option>
+                                            <option value="F">F</option>
+                                            <option value="G">G</option>
+                                            <option value="H">H</option>
+                                            <option value="I">I</option>
+                                        </select>
+                                    </div>
+                                    <div class="mt-1 fst-italic" style="font-size: 12px">Six types sont acceptés : E (Entrée TOR), S (Sortie TOR), EA (Entrée ANA), SA (Sortie ANA), M (Bit mémoire), MW (Mot mémoire), BOOL (Booléen), INT (entier), WORD (Mot)</div>
+                                    <div class="d-flex gap-2 align-items-center mt-2">
+                                        <label style="width: 350px">Colonne Commentaire</label>
+                                        <select class="form-select" value="" id="schneider-generateur-xsy-colonne-commentaire" >
+                                            <option value=""></option>
+                                            <option value="A">A</option>
+                                            <option value="B">B</option>
+                                            <option value="C">C</option>
+                                            <option value="D">D</option>
+                                            <option value="E">E</option>
+                                            <option value="F">F</option>
+                                            <option value="G">G</option>
+                                            <option value="H">H</option>
+                                            <option value="I">I</option>
+                                        </select>
+                                    </div>
+                                    <div class="d-flex align-items-center justify-content-end mt-2">
+                                        <button type="button" class="btn btn-primary d-flex align-items-center gap-2 px-4 py-2" id="schneider-generateur-xsy-executer-btn">
+                                            <i class="bi bi-magic icon"></i> 
+                                            <span class="spinner spinner-border d-none" style="width: 20px; height: 20px"></span>
+                                            Créer
+                                        </button>
+                                    </div>
+                                    <textarea class="form-control readonly mt-2 d-none" readonly style="width: 100%; height: 150px;; color: red;" id="schneider-generateur-xsy-resultat-textarea"></textarea>
+                                </div>
+                                <hr />
+                                <div id="schneider-editeur-programme">
+                                    <h4>Edition programme</h4>
+                                    <p style="font-size: 13px">
+                                        Lorsqu'un programme ne contient pas de mnémoniques mais plutot des adresses en dur dans le programme, <br />
+                                        il peut être fastidieux de faire tous les remplacements une fois les mnémoniques créés. <br />
+                                        Ce programme prend en entrée un fichier (FEF ou XPG) et effectue les remplacements à partir d'un fichier de mnémoniques. <br />
+                                        Le nouveau fichier (FEF ou XPG) généré peut ensuite être importé dans le projet de migration.
+                                    </p>
+                                    <div class="d-flex gap-2 align-items-center mt-2">
+                                        <label style="width: 365px">Fichier d'entrée (FEF, XPG)</label>
+                                        <input value="" readonly class="form-control readonly" id="schneider-editeur-programme-fichier-entree" />
+                                        <button type="button" class="btn btn-secondary" id="schneider-editeur-programme-fichier-entree-btn"><i class="bi bi-pen"></i></button>
+                                    </div>
+                                    <div class="d-flex gap-2 align-items-center mt-2">
+                                        <label style="width: 365px">Fichier de sortie (FEF, XPG)</label>
+                                        <input value="" readonly class="form-control readonly" id="schneider-editeur-programme-fichier-sortie" />
+                                        <button type="button" class="btn btn-secondary" id="schneider-editeur-programme-fichier-sortie-btn"><i class="bi bi-pen"></i></button>
+                                    </div>
+                                    <div class="d-flex gap-2 align-items-center mt-2">
+                                        <label style="width: 365px">Fichier de mnémoniques (Excel)</label>
+                                        <input value="" readonly class="form-control readonly" id="schneider-editeur-programme-fichier-mnemoniques" />
+                                        <button type="button" class="btn btn-secondary" id="schneider-editeur-programme-fichier-mnemoniques-btn"><i class="bi bi-pen"></i></button>
+                                    </div>
+                                    <div class="d-flex gap-2 align-items-center mt-2">
+                                        <label style="width: 350px">Colonne Adresse</label>
+                                        <select class="form-select" value="" id="schneider-editeur-programme-colonne-adresse" >
+                                            <option value=""></option>
+                                            <option value="A">A</option>
+                                            <option value="B">B</option>
+                                            <option value="C">C</option>
+                                            <option value="D">D</option>
+                                            <option value="E">E</option>
+                                            <option value="F">F</option>
+                                            <option value="G">G</option>
+                                            <option value="H">H</option>
+                                            <option value="I">I</option>
+                                        </select>
+                                    </div>
+                                    <div class="mt-1 fst-italic" style="font-size: 12px">Les adresses à remplacer</div>
+                                    <div class="d-flex gap-2 align-items-center mt-2">
+                                        <label style="width: 350px">Colonne Mnémonique</label>
+                                        <select class="form-select" value="" id="schneider-editeur-programme-colonne-mnemonique" >
+                                            <option value=""></option>
+                                            <option value="A">A</option>
+                                            <option value="B">B</option>
+                                            <option value="C">C</option>
+                                            <option value="D">D</option>
+                                            <option value="E">E</option>
+                                            <option value="F">F</option>
+                                            <option value="G">G</option>
+                                            <option value="H">H</option>
+                                            <option value="I">I</option>
+                                        </select>
+                                    </div>
+                                    <div class="d-flex justify-content-end align-items-center gap-2 mt-2">
+                                        <i class="bi bi-arrow-90deg-up"></i>
+                                        <input class="form-check-input" type="checkbox" checked id="schneider-editeur-programme-ajouter-prefixes">
+                                        <label class="form-check-label" for="schneider-editeur-programme-ajouter-prefixes">
+                                            Ajouter les préfixes IN, OUT, EA, SA pour les entrées/sorties
+                                        </label>
+                                    </div>
+                                    <div class="d-flex gap-2 align-items-center mt-2">
+                                        <label style="width: 350px">Colonne Type</label>
+                                        <select class="form-select" value="" id="schneider-editeur-programme-colonne-type" >
+                                            <option value=""></option>
+                                            <option value="A">A</option>
+                                            <option value="B">B</option>
+                                            <option value="C">C</option>
+                                            <option value="D">D</option>
+                                            <option value="E">E</option>
+                                            <option value="F">F</option>
+                                            <option value="G">G</option>
+                                            <option value="H">H</option>
+                                            <option value="I">I</option>
+                                        </select>
+                                    </div>
+                                    <div class="mt-1 fst-italic" style="font-size: 12px">
+                                        Quatre types sont pris en compte ici : E (Entrée TOR), S (Sortie TOR), EA (Entrée ANA), SA (Sortie ANA) <br />
+                                        <b>Le contrôle du type se fait uniquement si l'ajout des préfixes est demandé</b>
+                                    </div>
+                                    <p style="font-size: 13px" class="mt-2">
+                                        Chaque adresse sera remplacée par le mnémonique de la même ligne
+                                    </p>
+                                    <div class="d-flex align-items-center justify-content-end mt-2">
+                                        <button type="button" class="btn btn-primary d-flex align-items-center gap-2 px-4 py-2" id="schneider-editeur-programme-executer-btn">
+                                            <i class="bi bi-magic icon"></i> 
+                                            <span class="spinner spinner-border d-none" style="width: 20px; height: 20px"></span>
+                                            Exécuter
+                                        </button>
+                                    </div>
+                                    <textarea class="form-control readonly mt-2 d-none" readonly style="width: 100%; height: 150px;; color: red;" id="schneider-editeur-programme-resultat-textarea"></textarea>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="accordion-item">
-                        <h2 class="accordion-header">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#telecharger-datasheet-siemens" aria-expanded="false" aria-controls="collapseTwo">
-                                Siemens
-                            </button>
-                        </h2>
-                        <div id="telecharger-datasheet-siemens" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
-                            <div class="accordion-body">
-                                <p style="font-size: 12px">
-                                    La fichier est mis dans le dossier 'Téléchargements'
-                                </p>
-                                <div class="d-flex align-items-center gap-2">
-                                    <input value="" class="form-control" id="telecharger-datasheet-siemens-ref" placeholder="Référence"/>
-                                    <select class="form-select" value="FR" style="width: 100px" id="telecharger-datasheet-siemens-lang" >
-                                        <option value="FR">FR</option>
-                                        <option value="EN">EN</option>
-                                    </select>
-                                    <button type="button" class="btn btn-primary d-flex align-items-center gap-2 p-2" id="telecharger-datasheet-siemens-btn">
-                                        <i class="bi bi-download icon"></i> 
-                                        <span class="spinner spinner-border d-none" style="width: 20px; height: 20px"></span>
-                                        Télécharger
-                                    </button>
+                </div>
+            </div>
+
+            <div id="documentations" class="tab-pane fade">
+                <div id="rechercher-document">
+                    <h4 class="mt-2 mb-2 fw-bold">Rechercher un document</h4>
+                    <p>Recherche un document dans le dossier base de documents</p>
+                    <div class="d-flex align-items-center gap-2">
+                        <input type="text" value="" class="form-control" id="rechercher-document-ref" placeholder="Référence"/>
+                        <select class="form-select" value="DATASHEET" style="width: 220px" id="rechercher-document-type" >
+                            <option value="">Tous les types</option>
+                            <option value="DATASHEET">DATASHEET</option>
+                            <option value="MANUEL">MANUEL</option>
+                            <option value="DESSIN">DESSIN</option>
+                            <option value="CABLAGE">CABLAGE</option>
+                            <option value="MONTAGE">MONTAGE</option>
+                            <option value="CERTIFICAT">CERTIFICAT</option>
+                        </select>
+                        <select class="form-select" value="FR" style="width: 180px" id="rechercher-document-lang" >
+                            <option value="FR">FR (Français)</option>
+                            <option value="EN">EN (Anglais)</option>
+                            <option value="EN">DE (Allemand)</option>
+                            <option value="EN">IT (Italien)</option>
+                        </select>
+                        <button type="button" class="btn btn-primary d-flex justify-content-center align-items-center gap-2 p-2" id="rechercher-document-btn" style="width: 200px">
+                            <i class="bi bi-search icon"></i> 
+                            <span class="spinner spinner-border d-none" style="width: 20px; height: 20px"></span>
+                            Rechercher
+                        </button>
+                    </div>
+                    <div id="rechercher-document-chemin-fichier" class="mt-1 d-none" style="max-height: 400px; overflow: auto; border: 1px solid lightgray; border-radius: 5px; padding: 5px;"></div>
+                </div>
+                <div id="ajouter-document" class="mt-4">
+                    <h4 class="mt-2 mb-2 fw-bold">Ajouter un document</h4>
+                    <p>Ajouter un document dans la base de documents</p>
+                    <div class="d-flex align-items-center gap-2">
+                        <input value="" placeholder="Fichier" readonly class="form-control readonly" id="generateur-doe-fichier-nomenclature"/>
+                        <button type="button" class="btn btn-secondary" id="generateur-doe-fichier-nomenclature-btn"><i class="bi bi-pen"></i></button>
+                    </div>
+                    <div class="d-flex align-items-center gap-2 mt-2">
+                        <input type="text" value="" class="form-control" id="ajouter-document-ref" placeholder="Référence"/>
+                        <select class="form-select" value="DATASHEET" style="width: 220px" id="ajouter-document-type" >
+                            <option value="">Type</option>
+                            <option value="DATASHEET">DATASHEET</option>
+                            <option value="MANUEL">MANUEL</option>
+                            <option value="DESSIN">DESSIN</option>
+                            <option value="CABLAGE">CABLAGE</option>
+                            <option value="MONTAGE">MONTAGE</option>
+                            <option value="CERTIFICAT">CERTIFICAT</option>
+                        </select>
+                        <select class="form-select" value="FR" style="width: 180px" id="ajouter-document-lang" >
+                            <option value="">Langue</option>
+                            <option value="FR">FR (Français)</option>
+                            <option value="EN">EN (Anglais)</option>
+                            <option value="EN">DE (Allemand)</option>
+                            <option value="EN">IT (Italien)</option>
+                        </select>
+                        <button type="button" class="btn btn-primary d-flex justify-content-center align-items-center gap-2 p-2" id="ajouter-document-btn" style="width: 200px">
+                            <i class="bi bi-plus icon"></i> 
+                            <span class="spinner spinner-border d-none" style="width: 20px; height: 20px"></span>
+                            Ajouter
+                        </button>
+                    </div>
+                    <div id="ajouter-document-chemin-fichier" class="mt-1 d-none" style="max-height: 400px; overflow: auto; border: 1px solid lightgray; border-radius: 5px; padding: 5px;"></div>
+                </div>
+                <div id="telecharger-datasheet" class="mt-4">
+                    <h4 class="mb-3 fw-bold">Télécharger une datasheet</h4>
+                    <div class="d-flex align-items-center gap-2 mb-3">
+                        <input class="form-check-input" type="checkbox" checked id="telecharger-datasheet-ouvrir-apres-telechargement">
+                        <label class="form-check-label" for="telecharger-datasheet-ouvrir-apres-telechargement">
+                            Ouvrir le fichier après téléchargement
+                        </label>
+                    </div>
+                    <div class="accordion">
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#telecharger-datasheet-harting" aria-expanded="false">
+                                    Harting
+                                </button>
+                            </h2>
+                            <div id="telecharger-datasheet-harting" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                                <div class="accordion-body">
+                                    <p style="font-size: 12px">
+                                        La fichier est mis dans le dossier 'Téléchargements'
+                                    </p>
+                                    <div class="d-flex align-items-center gap-2">
+                                        <input type="number" value="" class="form-control" id="telecharger-datasheet-harting-ref" placeholder="Référence"/>
+                                        <select class="form-select" value="FR" style="width: 100px" id="telecharger-datasheet-harting-lang" >
+                                            <option value="FR">FR</option>
+                                            <option value="EN">EN</option>
+                                        </select>
+                                        <button type="button" class="btn btn-primary d-flex align-items-center gap-2 p-2" id="telecharger-datasheet-harting-btn">
+                                            <i class="bi bi-download icon"></i> 
+                                            <span class="spinner spinner-border d-none" style="width: 20px; height: 20px"></span>
+                                            Télécharger
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#telecharger-datasheet-siemens" aria-expanded="false">
+                                    Siemens
+                                </button>
+                            </h2>
+                            <div id="telecharger-datasheet-siemens" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                                <div class="accordion-body">
+                                    <p style="font-size: 12px">
+                                        La fichier est mis dans le dossier 'Téléchargements'
+                                    </p>
+                                    <div class="d-flex align-items-center gap-2">
+                                        <input value="" class="form-control" id="telecharger-datasheet-siemens-ref" placeholder="Référence"/>
+                                        <select class="form-select" value="FR" style="width: 100px" id="telecharger-datasheet-siemens-lang" >
+                                            <option value="FR">FR</option>
+                                            <option value="EN">EN</option>
+                                        </select>
+                                        <button type="button" class="btn btn-primary d-flex align-items-center gap-2 p-2" id="telecharger-datasheet-siemens-btn">
+                                            <i class="bi bi-download icon"></i> 
+                                            <span class="spinner spinner-border d-none" style="width: 20px; height: 20px"></span>
+                                            Télécharger
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#telecharger-datasheet-teknomega" aria-expanded="false">
+                                    Teknomega
+                                </button>
+                            </h2>
+                            <div id="telecharger-datasheet-teknomega" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                                <div class="accordion-body">
+                                    <p style="font-size: 12px">
+                                        La fichier est mis dans le dossier 'Téléchargements'
+                                    </p>
+                                    <div class="d-flex align-items-center gap-2">
+                                        <input value="" class="form-control" id="telecharger-datasheet-teknomega-ref" placeholder="Référence"/>
+                                        <select class="form-select" value="EN" style="width: 100px" id="telecharger-datasheet-teknomega-lang" >
+                                            <option value="EN">EN</option>
+                                        </select>
+                                        <button type="button" class="btn btn-primary d-flex align-items-center gap-2 p-2" id="telecharger-datasheet-teknomega-btn">
+                                            <i class="bi bi-download icon"></i> 
+                                            <span class="spinner spinner-border d-none" style="width: 20px; height: 20px"></span>
+                                            Télécharger
+                                        </button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="accordion-item">
-                        <h2 class="accordion-header">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#telecharger-datasheet-teknomega" aria-expanded="false" aria-controls="collapseTwo">
-                                Teknomega
-                            </button>
-                        </h2>
-                        <div id="telecharger-datasheet-teknomega" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
-                            <div class="accordion-body">
-                                <p style="font-size: 12px">
-                                    La fichier est mis dans le dossier 'Téléchargements'
-                                </p>
-                                <div class="d-flex align-items-center gap-2">
-                                    <input value="" class="form-control" id="telecharger-datasheet-teknomega-ref" placeholder="Référence"/>
-                                    <select class="form-select" value="EN" style="width: 100px" id="telecharger-datasheet-teknomega-lang" >
-                                        <option value="EN">EN</option>
-                                    </select>
-                                    <button type="button" class="btn btn-primary d-flex align-items-center gap-2 p-2" id="telecharger-datasheet-teknomega-btn">
-                                        <i class="bi bi-download icon"></i> 
-                                        <span class="spinner spinner-border d-none" style="width: 20px; height: 20px"></span>
-                                        Télécharger
-                                    </button>
-                                </div>
-                            </div>
+                </div>
+            </div>
+            <div id="parametres" class="tab-pane fade">
+                <h4 class="mt-2 mb-3 fw-bold">Paramètres</h4>
+                <div class="d-flex flex-column gap-2">
+                    <div class="py: 1" style="border-bottom: 1px solid lightgray;">
+                        <div class="d-flex gap-2 align-items-center">
+                            <label style="width: 365px">Dossier base de données matériels</label>
+                            <input readonly class="form-control readonly" id="parametres-dossier-bd-materiels-input" />
+                            <button type="button" class="btn btn-secondary" id="parametres-dossier-bd-materiels-btn"><i class="bi bi-pen"></i></button>
                         </div>
+                        <p class="mt-2" style="font-style: italic; font-size: 12px;">
+                            Dossier contenant les fichiers de documentations (fiches techniques, certificats, déclarations de conformités, ...) <br />
+                            Pour que l'application fonctionne correctement, chaque fichier doit être dans un sous-dossier correspondant au nom du fabricant
+                        </p>
                     </div>
                 </div>
             </div>
@@ -355,11 +830,14 @@
     <script src="../scripts/misc-utils.js"></script>
     <script src="../scripts/toastify-utils.js"></script>
     <script src="../scripts/index.js"></script>
+    <script src="../scripts/_parametres.js"></script>
     <script src="../scripts/_calculs.js"></script>
     <script src="../scripts/_generateur-doe.js"></script>
     <script src="../scripts/_simplificateur-nomenclature.js"></script>
-    <script src="../scripts/_telecharger-datasheet-harting.js"></script>
-    <script src="../scripts/_telecharger-datasheet-siemens.js"></script>
-    <script src="../scripts/_telecharger-datasheet-teknomega.js"></script>
+    <script src="../scripts/_schneider-generateur-xsy.js"></script>
+    <script src="../scripts/_schneider-editeur-programme.js"></script>
+    <script src="../scripts/_rechercher-document.js"></script>
+    <script src="../scripts/_telecharger-datasheet.js"></script>
+    <script src="../scripts/_controleur-normes.js"></script>
   </body>
 </html>

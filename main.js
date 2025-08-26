@@ -4,6 +4,8 @@ const fs   = require("fs")
 const https = require('https')
 const xlsx = require('node-xlsx')
 const { exec } = require('child_process');
+const xmlbuilder = require('xmlbuilder');
+const pdfparse = require('pdf-parse');
 
 //Quit the app if squirrel is running
 if (require('electron-squirrel-startup')) app.quit();
@@ -129,6 +131,7 @@ app.whenReady().then(() => {
     });
 
     /**
+     * @param {string} filePath
      * @param {
      *  Array<{
      *      name: string, 
@@ -165,6 +168,54 @@ app.whenReady().then(() => {
             return false
         }
     });
+    
+    /**
+     * @param {any} data
+    */
+    ipcMain.handle('misc.buildXML', async (event, data) => {   
+            return xmlbuilder.create(data).end({ pretty: true})
+    });
+
+    /**
+     * @param {string} filePath
+     */
+    ipcMain.handle('misc.readFile', async (event, filePath, options = {}) => {   
+        if(!filePath || filePath == "") return null
+        try {
+            return fs.readFileSync(filePath, options)
+        } catch(err) {
+            console.log(err)
+            return null
+        }
+    });
+
+    /**
+     * @param {string} filePath
+     * @param {any} data
+     * @param {
+     *  {
+    *      openOnFinish: boolean
+    *  }
+    * } options
+    */
+    ipcMain.handle('misc.writeFile', async (event, filePath, data, options) => {   
+        const _options = {
+            openOnFinish: true,
+            ...options
+        }
+        if(!filePath || filePath == "") return
+        try {
+            fs.writeFileSync(
+                filePath,
+                data
+            )
+            if(_options.openOnFinish) exec(`start "" "${filePath}"`);
+            return true
+        } catch(err) {
+            console.log(err)
+            return false
+        }
+    });
 
     /**
      * @param {string} url
@@ -174,10 +225,12 @@ app.whenReady().then(() => {
      *      contentType
      *  }
      * } options
+     * @returns {Promise<string|false>} file path
      */
     ipcMain.handle('misc.downloadFile', async (event, url, destFileName, options = {}) => {   
         return new Promise(resolve => {
-            var file = fs.createWriteStream(process.env.USERPROFILE + "/Downloads/"+destFileName);
+            const filePath = process.env.USERPROFILE + "/Downloads/"+destFileName
+            var file = fs.createWriteStream(filePath);
             https.get(url, function(response) {
                 if(options && options.contentType && options.contentType.toLowerCase() != response.headers["content-type"].toLowerCase()){
                     resolve(false)
@@ -186,13 +239,50 @@ app.whenReady().then(() => {
                 response.pipe(file);
                 file.on('finish', function() {
                     file.close()
-                    resolve(true)
+                    resolve(filePath)
                 });
                 file.on("error", () => {
                     resolve(false)
                 })
             });
         })
+    });
+
+    /**
+     * @param {string} filePath
+     * @returns {void}
+     */
+    ipcMain.handle('misc.startFile', async (event, filePath) => {   
+        return new Promise(resolve => {
+            exec(`start "" "${filePath}"`);
+            resolve(true)
+        })
+    });
+
+    /**
+     * @param {string} filePath
+     * @returns {void}
+     */
+    ipcMain.handle('misc.openDirAndSelectFile', async (event, filePath) => {   
+        return new Promise(resolve => {
+            exec(`explorer /select,"${filePath.replaceAll("/", "\\")}"`);
+            resolve(true)
+        })
+    });
+
+    /**
+     * @param {string} filePath
+     */
+    ipcMain.handle('misc.getTextsFromPdf', async (event, filePath, options = {}) => {   
+        if(!filePath || filePath == "") return null
+        try {
+            const data = await pdfparse(fs.readFileSync(filePath));
+            return data.text
+        } catch(err) {
+            console.log(filePath)
+            console.log(err)
+            return null
+        }
     });
 
 })

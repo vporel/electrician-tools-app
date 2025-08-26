@@ -27,5 +27,11 @@ contextBridge.exposeInMainWorld('system', {
 contextBridge.exposeInMainWorld('misc', {
     readExcelFile: async (filePath) => await ipcRenderer.invoke('misc.readExcelFile', filePath),
     writeExcelFile: async (filePath, data, options) => await ipcRenderer.invoke('misc.writeExcelFile', filePath, data, options),
-    downloadFile: async (url, destFileName, options) => await ipcRenderer.invoke('misc.downloadFile', url, destFileName, options)
+    buildXML: async (data) => await ipcRenderer.invoke('misc.buildXML', data),
+    readFile: async (filePath, options) => await ipcRenderer.invoke('misc.readFile', filePath, options),
+    writeFile: async (filePath, data, options) => await ipcRenderer.invoke('misc.writeFile', filePath, data, options),
+    downloadFile: async (url, destFileName, options) => await ipcRenderer.invoke('misc.downloadFile', url, destFileName, options),
+    startFile: async (filePath) => await ipcRenderer.invoke('misc.startFile', filePath),
+    openDirAndSelectFile: async (filePath) => await ipcRenderer.invoke('misc.openDirAndSelectFile', filePath),
+    getTextsFromPdf: async (filePath, options) => await ipcRenderer.invoke('misc.getTextsFromPdf', filePath, options)
 })  
